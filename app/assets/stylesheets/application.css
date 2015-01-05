@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+.custom_marker_content{
+  background: white;
+  padding: 10px;
+}

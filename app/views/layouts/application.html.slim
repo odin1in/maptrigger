@@ -1,0 +1,46 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title
+      | Starter Template for Bootstrap
+    meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    meta name="description" content=""
+    meta name="author" content=""
+    /! HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries
+    /[if lt IE 9]
+      = javascript_include_tag "https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js", "https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"
+
+    = javascript_include_tag "//maps.google.com/maps/api/js?v=3.13&sensor=false&libraries=geometry"
+    = javascript_include_tag "//google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js"
+    = javascript_include_tag "//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    .navbar.navbar-inverse.navbar-fixed-top
+      .container
+        .navbar-header
+          button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
+            span.sr-only
+              | Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          = link_to "Map Trigger", "#", :class => "navbar-brand"
+        .collapse.navbar-collapse
+          ul.nav.navbar-nav
+            li.active
+              a href=root_path
+                | Home
+          ul.nav.navbar-nav.navbar-right
+            - if user_signed_in?
+              li
+                = link_to "登出", :destroy_user_session, method: :delete
+    .container
+    - flash.each do |name, msg|
+      = content_tag :div, :class => "alert alert-#{ name == :error ? "danger" : "success" } alert-dismissable" do
+        button.close type="button" data-dismiss="alert" aria-hidden="true"
+          | &times;
+        = msg
+    = yield
