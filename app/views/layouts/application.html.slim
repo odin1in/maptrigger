@@ -30,10 +30,10 @@ html
           = link_to "Map Trigger", "#", :class => "navbar-brand"
         .collapse.navbar-collapse
           ul.nav.navbar-nav
-            li class="#{current_page?(controller: 'welcome', action: 'index') ? 'active' : ''}"
+            li class="#{user_signed_in? && current_page?(controller: 'welcome', action: 'index') ? 'active' : ''}"
               a href=root_path data-no-turbolink="true"
                 | Home
-            li class="#{current_page?(controller: 'events', action: 'index') ? 'active' : ''}"
+            li class="#{user_signed_in? && current_page?(controller: 'events', action: 'index') ? 'active' : ''}"
               a href=events_path
                 | Event
           ul.nav.navbar-nav.navbar-right
@@ -41,7 +41,7 @@ html
               li
                 = link_to "登出", :destroy_user_session, method: :delete
 
-    - if !current_page?(controller: "welcome", action: "index")
+    - if !user_signed_in? || !current_page?(controller: "welcome", action: "index")
       .container style="margin-top: 50px;"
         == yield
     - else
