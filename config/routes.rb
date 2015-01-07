@@ -2,6 +2,12 @@ Rails.application.routes.draw do
 
 
 
+  resources :events do
+    collection do
+      get "near"
+    end
+  end
+
   namespace :users do
   get 'omniauth_callbacks/facebook'
   end

@@ -20,6 +20,7 @@ class CustomMarkerBuilder extends Gmaps.Google.Builders.Marker
 window.Welcome =
   current_position: undefined
   gmap_handler: undefined
+  current_content: ''
 
   init: ->
     Welcome.init_google_map()
@@ -48,10 +49,20 @@ window.Welcome =
     Welcome.gmap_handler.removeMarker marker
 
   addMarker: (position) ->
+    $.ajax
+      url: '/events/near'
+      dataType: "json"
+      async: false
+      data:
+        latitude: position.coords.latitude
+        longitude: position.coords.longitude
+      success: (d) ->
+        Welcome.current_content = d[0].creator + ": " + d[0].name
+
     marker = Welcome.gmap_handler.addMarker
       lat: position.coords.latitude
       lng: position.coords.longitude
-      custom_marker: "Statue of Liberty"
+      custom_marker: Welcome.current_content
 
 
   center_marker: (position) ->

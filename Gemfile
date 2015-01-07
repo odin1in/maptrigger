@@ -33,6 +33,11 @@ gem 'devise'
 gem 'omniauth-facebook'
 gem 'devise-bootstrap-views'
 gem 'underscore-rails'
+gem 'geocoder'
+gem 'capistrano', '~> 3.2.0'
+gem 'capistrano-rvm'
+gem 'capistrano-rails', group: :development
+gem 'capistrano3-puma', github: "seuros/capistrano-puma", group: :development
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,0 +1,43 @@
+.page-header
+  = link_to new_event_path, :class => 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Event
+  h1
+    | Listing events
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Name
+        th
+          | Address
+        th
+          | Latitude
+        th
+          | Longitude
+        th
+          | Created by
+        th
+        th
+        th
+    tbody
+      - @events.each do | event |
+        tr
+          td
+            = event.name
+          td
+            = event.address
+          td
+            = event.latitude
+          td
+            = event.longitude
+          td
+            = event.created_by
+          td
+            = link_to 'Show', event
+          td
+            = link_to 'Edit', edit_event_path(event) 
+          td
+            = link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } 
