@@ -59,6 +59,8 @@ window.Welcome =
       success: (d) ->
         if d.length > 0
           Welcome.current_content = d[0].creator + ": " + d[0].name
+        else
+          Welcome.current_content = ''
 
     marker = Welcome.gmap_handler.addMarker
       lat: position.coords.latitude
